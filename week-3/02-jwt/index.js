@@ -35,7 +35,7 @@ function signJwt(username, password) {
 /**
  * Verifies a JWT using a secret key.
  *
- * @param {string} token - The JWT string to ve rify.
+ * @param {string} token - The JWT string to verify.
  * @returns {boolean} Returns true if the token is valid and verified using the secret key.
  *                    Returns false if the token is invalid, expired, or not verified
  *                    using the secret key.
