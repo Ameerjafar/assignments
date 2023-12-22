@@ -1,15 +1,18 @@
 const { User } = require('../db');
  
-function userMiddleware(req, res, next) {
+async function userMiddleware(req, res, next) {
     // Implement user auth logic
     // You need to check the headers and validate the user from the user DB. Check readme for the exact headers to be expected
-    try {
-        const user = req.headers['username'];
-        const pass = req.headers['password'];
-        User.find({user: username, pass: password});
+    const userName = req.headers['username'];
+    const pass = req.headers['password'];
+    const validation = await User.fndOne({
+        username: userName,
+        password: pass
+    })
+    if(validation) {
         next();
-    }catch(error) {
-        res.send(404).send("user not found");
+    } else {
+        res.status(404).send("your username or password is wrong");
     }
 }
 

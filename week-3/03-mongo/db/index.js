@@ -1,3 +1,7 @@
+
+
+
+
 const mongoose = require('mongoose');
 
 // Connect to MongoDB
@@ -24,13 +28,21 @@ const CourseSchema = new mongoose.Schema({
     image: String
 
 });
+const purchasedCoursesSchema = new mongoose.Schema({
+    courseId: Number,
+    title: String,
+    description: String,
+    price: String,
+    image: String
+});
 
 const Admin = mongoose.model('Admin', AdminSchema);
 const User = mongoose.model('User', UserSchema);
 const Course = mongoose.model('Course', CourseSchema);
-
+const purchasedCourses = mongoose.model('PurchasedCourses', purchasedCoursesSchema);
 module.exports = {
     Admin,
     User,
-    Course
+    Course,
+    purchasedCourses
 }
