@@ -1,17 +1,29 @@
 const { Router } = require("express");
 const router = Router();
 const userMiddleware = require("../middleware/user");
-const { Course } = require("../db");
+const { Course, User } = require("../db");
 
-// User Routes
-app.post('/signup', (req, res) => {
-    User.create({
-         username: req.body.username,
-         password: req.body.password
-    });
-    res.status(200).json({message: "User created successfully"});
+app.use(bodyParser.json());
 
-    // Implement user signup logic
+// Admin Routes
+app.post('/user/signup', async (req, res) => {
+    try {
+        const validatedData = validation.parse({
+            username: req.body.username,
+            password: req.body.password,
+        });
+
+        // Validation successful, proceed to create admin
+        await User.create({
+            username: validatedData.username,
+            password: validatedData.password,
+        });
+
+        res.json({ message: 'Admin created successfully' });
+    } catch (error) {
+        // Validation failed
+        res.status(400).send("Your username or password does not meet the given constraints");
+    }
 });
 
 app.get('/courses', userMiddleware,async (req, res) => {
