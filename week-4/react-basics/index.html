@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+</head>
+<script>
+    function logic() {
+        const title = document.getElementById("title").value;
+        const description = document.getElementById("description").value;
+        const divTag = document.getElementById("containerDiv");
+        // divTag.innerHTML += `
+        //     <div>${title}</div>
+        //     <div>${description}</div>
+        //     <button>markasdone</button>
+        // `
+        let divfortitle = document.createElement('div');
+        let divfordescription = document.createElement('div');
+        let divforbutton = document.createElement('button');
+        divfortitle.textContent = title;
+        divfordescription.textContent = description;
+        divforbutton.textContent = "markAsDone";
+        divTag.appendChild(divfortitle);
+        divTag.appendChild(divfordescription);
+        divTag.appendChild(divforbutton);
+
+    }
+</script>
+<body>
+
+    <input type = "text" id = "title" placeholder="firstInput"><br></br>
+    <input type = "text" id = "description" placeholder="secondInput"><br></br>
+    <button onclick="logic()">markAsDone</button>
+    <div id = "containerDiv"></div>
+</body>
+</html>
