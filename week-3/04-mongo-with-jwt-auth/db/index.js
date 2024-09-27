@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 // Connect to MongoDB
 mongoose.connect('your-mongodb-url');
-
+const secretCode = "ameer-server";
 // Define schemas
 const AdminSchema = new mongoose.Schema({
     // Schema definition here
@@ -23,5 +23,6 @@ const Course = mongoose.model('Course', CourseSchema);
 module.exports = {
     Admin,
     User,
-    Course
+    Course,
+    secretCode 
 }
